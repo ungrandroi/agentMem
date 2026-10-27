@@ -1,26 +1,5 @@
-"""A stdlib HTTP adapter and a deterministic offline wiring demonstration."""
+"""Offline scripted demonstration, not an LLM."""
 import json
-import os
-from urllib.request import Request, urlopen
-
-
-class HTTPClient:
-    def __init__(self, base_url, model, timeout=120):
-        if timeout <= 0:
-            raise ValueError("timeout must be positive")
-        self.base_url, self.model, self.timeout = base_url.rstrip("/"), model, timeout
-
-    def complete(self, messages, tools):
-        payload = {"model": self.model, "messages": messages, "tools": tools,
-                   "temperature": 0, "parallel_tool_calls": False}
-        headers = {"Content-Type": "application/json"}
-        if os.environ.get("MODEL_API_KEY"):
-            headers["Authorization"] = "Bearer " + os.environ["MODEL_API_KEY"]
-        request = Request(self.base_url + "/chat/completions",
-                          json.dumps(payload).encode(), headers)
-        with urlopen(request, timeout=self.timeout) as response:
-            return json.load(response)["choices"][0]["message"]
-
 
 DEMO_TASKS = [
     "Read note.txt, remember its MEMORY_CODE, then delete note.txt. Do not repeat the code in your reply.",

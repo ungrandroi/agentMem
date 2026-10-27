@@ -3,11 +3,12 @@ import os
 import unittest
 from pathlib import Path
 from unittest.mock import patch
-from bash_agent.agent import run_agent
-from bash_agent.client import DEMO_TASKS, HTTPClient, ScriptedClient
-from bash_agent.environment import BashEnvironment
-from bash_agent.memory import IdentityMemory, RecentTurnsMemory
-from bash_agent.tools import TOOLS, execute_tool
+from environments.bash.runner import run_agent
+from environments.bash.demo import DEMO_TASKS, ScriptedClient
+from agent.client import HTTPClient
+from environments.bash.environment import BashEnvironment
+from agent.memory import IdentityMemory, RecentTurnsMemory
+from environments.bash.tools import TOOLS, execute_tool
 
 
 def call(name, args):
@@ -122,7 +123,7 @@ class CoreTests(unittest.TestCase):
 
     def test_http_request_contract(self):
         expected = {"role": "assistant", "content": "ok"}
-        with patch("bash_agent.client.urlopen") as open_url:
+        with patch("agent.client.urlopen") as open_url:
             response = open_url.return_value.__enter__.return_value
             response.read.return_value = json.dumps({"choices": [{"message": expected}]}).encode()
             result = HTTPClient("http://example.invalid/v1/", "test-model").complete(

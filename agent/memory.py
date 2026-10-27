@@ -48,3 +48,10 @@ class RecentTurnsMemory(IdentityMemory):
             return super().render()
         system = [m for m in self.history if m["role"] == "system"]
         return deepcopy(system + self.history[starts[-self.turns]:])
+
+
+class CurrentObservationMemory(IdentityMemory):
+    def update(self, event):
+        if event['role'] == 'user':
+            self.history = [m for m in self.history if m['role'] == 'system']
+        super().update(deepcopy(event))

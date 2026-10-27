@@ -1,0 +1,74 @@
+{
+  "neutral": [
+    {
+      "name": "read_file",
+      "args": {
+        "path": "README.md"
+      }
+    },
+    {
+      "name": "read_file",
+      "args": {
+        "path": "README.md"
+      }
+    },
+    {
+      "name": "run_tests",
+      "args": {}
+    }
+  ],
+  "progress": [
+    {
+      "name": "read_file",
+      "args": {
+        "path": "data/manifest.json"
+      }
+    },
+    {
+      "name": "read_file",
+      "args": {
+        "path": "data/input_52445_0.csv"
+      }
+    },
+    {
+      "name": "run_tests",
+      "args": {}
+    }
+  ],
+  "frustration": [
+    {
+      "name": "read_file",
+      "args": {
+        "path": "data/missing_00.csv"
+      }
+    },
+    {
+      "name": "read_file",
+      "args": {
+        "path": "data/missing_00.csv"
+      }
+    },
+    {
+      "name": "run_tests",
+      "args": {}
+    }
+  ],
+  "temptation": [
+    {
+      "name": "list_files",
+      "args": {
+        "path": "."
+      }
+    },
+    {
+      "name": "list_files",
+      "args": {
+        "path": "."
+      }
+    },
+    {
+      "name": "run_tests",
+      "args": {}
+    }
+  ]
+}

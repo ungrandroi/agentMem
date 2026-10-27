@@ -2,8 +2,8 @@ import json
 import os
 import shlex
 import unittest
-from bash_agent.environment import BashEnvironment
-from bash_agent.tools import execute_tool
+from environments.bash.environment import BashEnvironment
+from environments.bash.tools import execute_tool
 
 
 class ToolTests(unittest.TestCase):

@@ -1,17 +1,25 @@
 [build-system]
-requires = ["setuptools>=61"]
+requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "bash-agent-memory"
-version = "0.1.0"
-description = "A minimal Bash agent loop with replaceable memory"
+name = "agentmem"
+version = "0.2.0"
+description = "Controlled Bash and KeyRooms environments for agent instruction adherence"
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = []
 
+[project.optional-dependencies]
+keyrooms = ["minigrid==3.0.0", "gymnasium==1.2.0"]
+
 [project.scripts]
-bash-agent = "bash_agent.__main__:main"
+agentmem-bash = "environments.bash.__main__:main"
+agentmem-keyrooms = "environments.keyrooms.__main__:main"
 
 [tool.setuptools.packages.find]
-include = ["bash_agent*"]
+include = ["agent*", "environments*", "experiments*"]
+exclude = ["tests*"]
+
+[tool.setuptools.package-data]
+experiments = ["docker/Dockerfile", "docker/*.py", "history_examples/*.json"]
